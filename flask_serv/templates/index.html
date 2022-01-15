@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block link %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+{% endblock %}*
+{% block body%}
+<div class="bloc">
+	<h1> Bienvenue sur Kleps </h1>
+	<p>
+		Kleps est une platforme de débat concernant les actions de votre commune. Elle permet aux citoyens de s'exprimer librement sur différents sujets proposés par leur commune. Sur Kleps, seul la pertinence des arguments compte, et aucune opinion n'est mauvaise.
+		Quant aux communes, Kleps rapproche mairie et citoyens en leur permettant de s'écouter et d'échanger sur un terrain neutre.
+	
+		<br/>Nouveau sur Kleps ? <a href="{{url_for('register')}}">Inscrivez-vous</a> !
+	</p>
+</div>
+{% endblock %}

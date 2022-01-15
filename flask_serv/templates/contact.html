@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block link %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='styles/contact.css') }}"/>
+{% endblock %}
+
+{% block body%}
+        <h2>Nous Contacter</h2>
+        <p class="description">Veuillez renseigner votre courriel et écrire votre message concernant bugs, idées ou simplement remarques concernant Kleps<p></p>
+        </p>
+        <div class="contact_form">
+                <form action="https://formspree.io/f/xpzbwapb" method="post">
+
+                    <label>
+                        <p>Votre adresse mail</p>
+                        <input type="email" required name="_replyto" placeholder="example@courriel.net">
+                    </label>
+                    <label>
+                        <p>Votre message</p>
+                        <textarea name="message" required wrap="soft" placeholder="Ecrivez votre message ici" rows="15"></textarea>
+                    </label>
+                    <button  type="submit">Envoyer</button>
+
+                </form>
+
+        </div>
+{% endblock %}
+

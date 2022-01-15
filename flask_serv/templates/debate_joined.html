@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div style="display: flex; flex-direction:column; align-items: center;">
+    
+        <br/><br/><br/>
+        <p>Vous avez bien rejoint le débat "{{joined_debate}}"</p> <br/><br/>
+        
+        <a href="{{url_for('debates_list')}}"> <p> Retour à la page débat </p> </a>
+        
+    </div>
+
+{% endblock %}

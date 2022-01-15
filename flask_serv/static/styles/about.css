@@ -1,0 +1,41 @@
+.body h2 {
+    font-size: 45px;
+    margin: 0 200px;
+    color: rgb(106, 122, 148);
+    text-shadow: 3px 2px 4px black;
+}
+
+.body {
+    background-image: url(../media/théatre.jpg);
+    background-size: cover ;
+    background-position: right;
+    justify-content: center;
+}
+
+.bloc {
+    background: rgba(240, 246, 255,0.7);
+	padding: 20px;
+	border-radius: 10px;
+}
+
+.body p {
+    text-align: justify;
+    font-size: 18px;
+    margin: 20px 0 100px;
+    color: #344664;
+}
+
+.body a {
+    font-size: 20px;
+    transition: ease all 0.5s;
+    text-decoration: underline;
+    color: #344664;
+}
+
+.body a:hover {
+    color: dodgerblue;
+}
+
+.body {
+    justify-content: center;
+}

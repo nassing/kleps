@@ -1,0 +1,59 @@
+.body {
+    align-items: center;
+}
+
+.debate {
+    display: flex;
+    flex-direction: column;
+    width: 100vh;
+    background: rgba(30,144,255,0.5);
+    border-radius: 7px;
+    padding: 20px;
+    margin: 10px;
+}
+
+.debate .tokens_coms {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+}
+
+.debate .title {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 10px;
+}
+
+.debate .title a{
+    font-size: 25px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.debate .tokens_coms .nb_coms, 
+.debate .tokens_coms .nb_tokens {
+    color: rgba(28,37,51,0.8);
+    font-size: 14px;
+}
+
+input {
+    width: 100vh;
+    display: flex;
+    justify-content: center;
+    background: darkgrey;
+    border-radius: 7px;
+    border: 0;
+    height: 50px;
+    transition: all 0.3s ease;
+    margin: 10px;
+}
+
+input:hover {
+    background: rgb(91, 169, 247);
+    color: gainsboro;
+}
+
+h2, p {
+    margin: 0 0 20px;
+}

@@ -1,0 +1,21 @@
+.propositions
+{
+    margin-left:10%;
+    width: auto;
+}
+
+p  {
+    width: auto
+}
+
+.com_and_linked_and_token {
+    justify-content: flex-end;
+    width:100%;
+}
+
+.com_and_linked_and_token p{   
+    color: rgba(28,37,51,0.8);
+    font-size:14px;
+}
+
+

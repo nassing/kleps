@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block link %}
+            <link rel="stylesheet" href="{{ url_for('static',filename='styles/audiorec.css')}}" />
+{% endblock %}
+{% block body %}
+    
+<div class="input">
+    <div class="post">
+        <strong>     Postez votre fichier audio </strong>
+
+        <p>Pour poster votre message, restez appuyer sur le bouton ci dessous. Écoutez le et téléchargez l'audio en cliquant
+        sur les 3 point superposés à droite de votre enregistrement.<br/>
+        Puis, choisissez l'audio en ".weba" que vous souhaitez poster en cliquant sur "choisir un fichier", ajoutez-y un titre et Envoyez !</p>
+        <form action="/getProposition/{{ id_debate }}" method="POST" enctype="multipart/form-data">
+            <input required type="file" id="audio_file" name="audio_file" >
+            <div class="titre">
+                Titre:
+                <input required type="text" id="title" name="title" >
+            </div>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>    
+    <div class="rec"><button onmousedown="startAudio();" onmouseup="stopAudio();">Restez appuyer pour enregistrer</button></div>
+
+</div>
+<div class="audio" id="audio"></div>
+<script type="text/javascript">
+    var device = navigator.mediaDevices.getUserMedia({audio: true});
+    var recorder = new MediaRecorder();
+    function startAudio()
+    {
+        var items = [];
+        device.then(stream => {
+            recorder = new MediaRecorder(stream);
+            recorder.ondataavailable = e=>{
+                items.push(e.data);
+                if (recorder.state == 'inactive')
+                {
+                    var blob = new Blob(items, {type: 'audio/webm'});
+                    var audio = document.getElementById('audio');
+                    var mainaudio = document.createElement('audio');
+                    mainaudio.setAttribute('controls', 'controls');
+                    audio.appendChild(mainaudio);
+                    mainaudio.innerHTML = '<source src="'+URL.createObjectURL(blob)+'" type="video/webm"/>'
+                }
+            }
+            recorder.start(100);
+            setTimeout(()=>{
+                recorder.stop();
+            }, 30000);
+        })
+    }
+    function stopAudio()
+    {
+        recorder.stop();        
+    }
+
+</script>
+{% endblock %}
