@@ -11,10 +11,6 @@ Il a été réalisé dans le cadre du projet de fin du premier semestre de premi
 - COUVRAT--PAILLE Titouan
 - SEDEKI Khalyl
 
-## Démo
-Vous pouvez voir [une démonstration de Kleps ici](https://kleps.pythonanywhere.com).
-Notez cependant que ce site a été hébergé sur [PythonAnywhere](https://pythonanywhere.com), qui ne permet pas de télécharger des fichiers sur le site. Vous ne pourrez donc pas publier de messages audio.
-
 ## Fonctionnalités
 - Système de compte : création de compte, connexion, vérification des contraintes
 - Messages audio : recording du message, téléchargement sur le serveur, possibilité de faire écouter le message à l'utilisateur, possibilité de donner un titre au message
