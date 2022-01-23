@@ -5,6 +5,7 @@ Il a été réalisé dans le cadre du projet de fin du premier semestre de premi
 - COUCHEVELLOU Clément
 - COUVRAT--PAILLE Titouan
 - SEDEKI Khalyl
+
 _Kleps is targeted to French municipalites, thus the project was made in French and did not get an English translation.
 If you are still interested in discovering this project, [click here](https://github.com/kleps/edit/main/README_EN.md) to read the English version of this README._
 
