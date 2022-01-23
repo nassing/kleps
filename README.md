@@ -1,7 +1,7 @@
 # Kleps
 
 _Kleps is targeted to French municipalites, thus the project was made in French and did not get an English translation.
-If you are still interested in discovering this project, [click here](https://github.com/kleps/edit/main/README_EN.md) to read the English version of this README._
+If you are still interested in discovering this project, [click here](https://github.com/nassing/kleps/blob/main/README_EN.md) to read the English version of this README._
 
 Kleps est un projet étudiant consistant en un réseau social sous forme de messages audio.
 
