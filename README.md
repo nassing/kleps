@@ -30,7 +30,7 @@ Installez ensuite la bibliothèque Flask via cette ligne de commande :
 ```
 $ pip install flask
 ```
-Il ne vous reste plus qu'à cloner ce projet et exéctuer ```flask_serv.bat``` si vous êtes sur Windows et ```flask_serv.sh``` si vous êtes sur Linux. Le site sera disponible à l'adresse ```127.0.0.1:5000```
+Il ne vous reste plus qu'à cloner ce projet et exécuter ```flask_serv.bat``` si vous êtes sur Windows et ```flask_serv.sh``` si vous êtes sur Linux. Le site sera disponible à l'adresse ```127.0.0.1:5000```
 
 ## Contact
 Vous pouvez contacter les membres du projet aux adresses mail suivantes :
