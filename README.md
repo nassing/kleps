@@ -1,13 +1,15 @@
 # Kleps
+
+_Kleps is targeted to French municipalites, thus the project was made in French and did not get an English translation.
+If you are still interested in discovering this project, [click here](https://github.com/kleps/edit/main/README_EN.md) to read the English version of this README._
+
 Kleps est un projet étudiant consistant en un réseau social sous forme de messages audio.
+
 Il a été réalisé dans le cadre du projet de fin du premier semestre de première année d'école d'ingénieur et a été développé par :
 - [ASSING Norman](https://github.com/nassing) (Chef de projet)
 - COUCHEVELLOU Clément
 - COUVRAT--PAILLE Titouan
 - SEDEKI Khalyl
-
-_Kleps is targeted to French municipalites, thus the project was made in French and did not get an English translation.
-If you are still interested in discovering this project, [click here](https://github.com/kleps/edit/main/README_EN.md) to read the English version of this README._
 
 ## Démo
 Vous pouvez voir [une démonstration de Kleps ici](https://kleps.pythonanywhere.com).
@@ -25,6 +27,7 @@ Notez cependant que ce site a été hébergé sur [PythonAnywhere](https://pytho
 
 ## Installation
 En l'état, Kleps n'a été utilisé qu'en serveur local, et cette partie détaillera donc la manière de mettre en place ce serveur localement uniquement. Pour héberger le site en ligne, veuillez consulter [la documentation de Flask](https://flask.palletsprojects.com/en/2.0.x/deploying/).
+
 Si ce n'est pas déjà fait, installez [Python 3.10](https://www.python.org/downloads/) (ou une version ultérieure) pour votre système d'exploitation.
 Installez ensuite la bibliothèque Flask via cette ligne de commande :
 ```
