@@ -7,7 +7,7 @@ p {
     margin: 5px 0;
 }
 
-textarea, input[type="email"], input#debate_message, input#description {
+textarea, input#debate_message, input#description {
     resize : none;
     width : 65vh;
     border: 0px;

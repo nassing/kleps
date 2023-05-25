@@ -27,7 +27,6 @@ con = sqlite3.connect("kleps.db")
 cursor = con.cursor()
 cursor.execute(''' CREATE TABLE IF NOT EXISTS userInfo (id INTEGER PRIMARY KEY AUTOINCREMENT, 
                                                         username TEXT NOT NULL UNIQUE,
-                                                        email TEXT NOT NULL UNIQUE,
                                                         password TEXT NOT NULL,
                                                         is_admin INT NOT NULL DEFAULT 0)''')
 
@@ -63,36 +62,31 @@ def isLoggedIn():
         return "true"
     return "false"
 
-def credentialsAlreadyExists(username, email):
+def credentialsAlreadyExists(username):
     #Fonction permettant de vérifier que les paramètres en entrée
     #sont bien compatibles avec les contraintes de la table
      con = sqlite3.connect("kleps.db")
      cursor = con.cursor()
-     cursor.execute("SELECT username,email FROM userInfo")
+     cursor.execute("SELECT username FROM userInfo")
      logInfo = cursor.fetchall()
      listVerif_username = []
-     listVerif_email = []
      for info in logInfo:
         listVerif_username.append(info[0])
-        listVerif_email.append(info[1])
      if username in  listVerif_username:
          session["alert_message"]="Ce nom d'utilisateur existe déjà"
          return  True
          #On stocke les messages d'alertes dans session
-     elif email in listVerif_email:
-        session["alert_message"]="Un compte est déjà lié à cet e-mail."
-        return True
      else:
          return False
 
 
-def addNewUser( username, email, password):
+def addNewUser( username, password):
     #Fonction premettant de rajouter un nouvel utilisateur
-    if not credentialsAlreadyExists(username,email): #Si le bool est vérifié, on a un alert_message
+    if not credentialsAlreadyExists(username): #Si le bool est vérifié, on a un alert_message
         con = sqlite3.connect("kleps.db")
         cursor = con.cursor()
-        command = "INSERT INTO userInfo (username, email, password) VALUES (?, ?, ?)"
-        cursor.execute( command, (username, email, password))
+        command = "INSERT INTO userInfo (username, password) VALUES (?, ?)"
+        cursor.execute( command, (username, password))
         con.commit()
         con.close
 
@@ -553,7 +547,6 @@ def register():
 def addUser():
     if request.method == "POST":
         username = request.form["username"]
-        email = request.form["email"]
         password = request.form["password"]
         confirm_password = request.form["confirm_password"]
         #On récupère les valeurs via un form
@@ -561,7 +554,7 @@ def addUser():
             session["alert_message"]="Les mots de passes ne sont pas les mêmes"
             return redirect(url_for("register"))
         try:
-            addNewUser( username, email, password)  #addNewUser crée un message d'alert si le mail/nom d'utilisateur existe déjà
+            addNewUser( username, password)  #addNewUser crée un message d'alert si le mail/nom d'utilisateur existe déjà
             if "alert_message" in session :
                 return redirect(url_for("register"))
             else:   #Sinon cela créé le compte, donc on informe l'utilisateur
@@ -831,3 +824,5 @@ def stats(id_user):
             alert_message= "Erreur lors du processus"
             
             return redirect(url_for('login'))
+        
+app.run()
