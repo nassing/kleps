@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block link %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='styles/admin.css') }}" />
+{% endblock %}
+
+{% block body %}
+        <div class="body">
+            <br/>
+            <p>Stats</p>
+            {% for i in range(n) %}
+                {%if stats[i][0] in id_debates%}
+                <div class="bloc">  
+                    <div class="stats_uniquement"> 
+                    <a href="{{url_for('debate',id_debate=stats[i][0])}}"><h3>{{stats[i][1]}}</h3></a> 
+                    <p>Debate Name</p>
+                    <br/>
+                    <h3>{{stats[i][2]}}</h3> 
+                    <p>Debate Description</p>
+                    <br/>
+                    <h3>{{stats[i][3]}}</h3> 
+                    <p>Number of comments</p>
+                    <br/>
+                    <h3>{{stats[i][4]}}</h3> 
+                    <p>Number of tokens given</p>
+                    </div> 
+                </div>
+                {% endif %}
+            {% endfor %}
+            <br/>
+        </div> 
+{% endblock %}  
+
+
+    
+

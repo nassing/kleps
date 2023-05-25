@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block link %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='styles/contact.css') }}"/>
+{% endblock %}
+s
+
+{% block body%}
+        <h2>Add a debate</h2>
+        <p class="description">Choississez un titre et une descirpiton complète pour exposer votre proposition/sujet sur laquelle les
+        utilisateurs pourront débattre.<p>
+      
+        <div class="contact_form"> 
+                <form action="{{ url_for('add_debate') }}" method="post">  
+                        <label>
+                                <p>Debate title</p>
+                                <input autocomplete="off" required type="text" id="debate_message" placeholder="Titre" name="debate_message">                            </label>
+                        </label>
+                        <label>
+                                <p>Full debate description</p>
+                                <textarea name="description" required wrap="soft" placeholder="Description du débat" rows="15"></textarea>                        </label>
+                        <button type="submit">Add a Debate</button>                   
+                </form> 
+        </div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block link %}
+            <link rel="stylesheet" href="{{ url_for('static',filename='styles/register_login.css') }} " />
+{% endblock %}
+
+{% block body %}    
+    <div class="sections">
+        <section class="leftpart">
+            <a href="{{url_for('index')}}"> <img src="static/media/logo_nu.png" class="logo_nu"/>  </a>
+            <p>Join Kleps to debate about the <br/>next projects of your city</p>
+        </section>
+        <section class="rightpart">
+            <div class="login">
+                <form action="{{ url_for('logUser') }}" method='POST'>
+                    <div class="field">
+                        <p>Username</p>
+                        <input required autocomplete="off" type="text" id="username" name="username" pattern="[^\s]+" title="Ce champ ne doit pas contenir d'espaces">
+                    </div>
+                    <div class="field">
+                        <p>Password</p>
+                        <input required type="password" id="password" name="password" pattern="[^\s]+" title="Ce champ ne doit pas contenir d'espaces">
+                    </div>
+                    <div class="button">
+                        <p><input type="submit" value="Se Connecter"></p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+{% endblock %}

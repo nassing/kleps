@@ -1,0 +1,72 @@
+.body h2 {
+    font-size: 45px;
+    margin: 0 200px;
+    color: rgb(106, 122, 148);
+}
+
+.body h1 {
+	font-size: 65px;
+	margin: 0 100px 10px;
+}
+
+.body {
+    background-image: url(../media/théatre.jpg);
+    background-size: cover ;
+    background-position: right;
+    justify-content: center;
+}
+
+.body p {
+    text-align: justify;
+    font-size: 18px;
+    color: #344664;
+}
+
+.body a {
+    font-size: 20px;
+    transition: ease all 0.5s;
+    text-decoration: underline;
+    color: #344664;
+}
+
+.body a:hover {
+    color: dodgerblue;
+}
+
+.body {
+    justify-content: center;
+}
+
+.bloc {
+    background: rgba(240, 246, 255,0.7);
+	padding: 20px;
+	border-radius: 10px;
+}
+
+#cookies
+{
+    height: 2rem;
+    position: fixed;
+    bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    color: black;
+    line-height: 10px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 24px;
+    border: 0.06rem solid white;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+#close-cookies
+{
+    margin-left: 1rem;
+}
+#close-cookies:hover
+{
+    cursor: pointer;
+}

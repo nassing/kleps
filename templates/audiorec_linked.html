@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block link %}
+            <link rel="stylesheet" href="{{ url_for('static',filename='styles/debate.css')}}" />
+            <link rel="stylesheet" href="{{ url_for('static',filename='styles/audiorec.css')}}" />
+{% endblock %}
+{% block body %}      
+        
+        {%set (path, sent_date, author, message_title, comment_count, linked_count, token_count,id_proposition,id_debate)=message%}
+            <br/>
+            <p>You are quoting:</p>
+            <div class="proposition">
+                        
+                <div class="title_and_link_button">
+                    
+                    <div class="prop_title"> <h3>{{ message_title }}</h3> </div>
+
+                </div>
+                <div class="audio_and_author">
+
+                    <audio controls> <source src="../../static/data/{{path}}"/> </audio>
+                    <p>by {{  author}}</p>
+
+                </div>
+                <div class="com_and_linked_and_token">
+
+                    <div class="com_or_linked_or_token"> <p>{{ comment_count }} comments</p> </div>
+                    <div class="com_or_linked_or_token"> <p>{{ linked_count }} proposals</p> </div>
+                    <div class="com_or_linked_or_token"> <p>{{ token_count }} tokens</p> </div>
+                    <div class="com_or_linked_or_token"> <p>published on {{ sent_date }}</p> </div>
+                </div>
+            </div>
+            <div class="input">
+                <div class="post">
+                    <strong>     Upload your audio file </strong>
+    
+                    <p>Pour poster votre message, restez appuyer sur le bouton ci dessous. Écoutez le et téléchargez l'audio en cliquant
+                    sur les 3 point superposés à droite de votre enregistrement.<br/>
+                    Puis, choisissez l'audio en ".weba" que vous souhaitez poster en cliquant sur "choisir un fichier", ajoutez-y un titre et Envoyez !</p>
+                    <form action="/getMessageLinked/{{ id_debate }}/{{ id_proposition }}" method="POST" enctype="multipart/form-data">
+                        <input required type="file" id="audio_file" name="audio_file" >
+                        <div class="titre">
+                            Title:
+                            <input required type="text" id="title" name="title" >
+                        </div>
+                        <button type="submit">Send</button>
+                    </form>    
+                </div>
+                <div class="rec"><button onmousedown="startAudio();" onmouseup="stopAudio();">Press and hold to save</button></div>
+            </div>
+
+            <div class="audio" id="audio"></div>
+            <script type="text/javascript">
+                var device = navigator.mediaDevices.getUserMedia({audio: true});
+                var recorder = new MediaRecorder();
+                function startAudio()
+                {
+                    var items = [];
+                    device.then(stream => {
+                        recorder = new MediaRecorder(stream);
+                        recorder.ondataavailable = e=>{
+                            items.push(e.data);
+                            if (recorder.state == 'inactive')
+                            {
+                                var blob = new Blob(items, {type: 'audio/webm'});
+                                var audio = document.getElementById('audio');
+                                var mainaudio = document.createElement('audio');
+                                mainaudio.setAttribute('controls', 'controls');
+                                audio.appendChild(mainaudio);
+                                mainaudio.innerHTML = '<source src="'+URL.createObjectURL(blob)+'" type="video/webm"/>'
+                            }
+                        }
+                        recorder.start(100);
+                        setTimeout(()=>{
+                            recorder.stop();
+                        }, 30000);
+                    })
+                }
+                function stopAudio()
+                {
+                    recorder.stop();        
+                }
+            </script>
+{% endblock %}

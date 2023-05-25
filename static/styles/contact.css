@@ -1,0 +1,55 @@
+form {
+    display : flex;
+    flex-direction: column;
+}
+
+p {
+    margin: 5px 0;
+}
+
+textarea, input[type="email"], input#debate_message, input#description {
+    resize : none;
+    width : 65vh;
+    border: 0px;
+    border-radius: 7px;
+    padding: 7px;
+}
+
+input#description{
+    height: 200px;
+}
+button
+{
+    width:100%;
+    border:0;
+    margin-top: 60px;
+    display:flex;
+    align-items: center;
+    justify-content: center;    
+    background: darkgrey;
+    color: rgba(28,37,51,1);
+    transition: all 0.3s ease;
+    height: 50px;
+    border-radius: 7px;
+}
+
+button:hover {
+    background: dodgerblue;
+    color: gainsboro;
+}
+
+h2 {
+    color: darkgrey;
+    font-size: 40px;
+    cursor: default;
+}
+
+.body {
+    align-items: center;
+}
+
+.description {
+    padding: 20px 0 60px;
+    cursor: default;
+}
+

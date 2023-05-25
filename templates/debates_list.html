@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block link %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='styles/debates_list.css') }}" >   
+{% endblock %}
+
+{% block body%}
+
+		
+
+		<h2> All debates </h2>
+
+		{%if is_admin=="true"%}
+
+			<form action="{{url_for('add_debate')}}">
+				<input type="submit" value="Add debate" title="Ajoutez un débat à l'espace de débat"/>
+			</form>
+
+			<form action="{{url_for('stats',id_user=session['username'])}}">
+				<input type="submit" value="Stats" title="Visualisez les statistiques avancées des débats"/>
+			</form>
+
+		{%endif%}
+
+		
+        {%if not debatesData%}
+        
+        <p>No debate available ...</p>
+        
+        {%endif%}
+
+		{%for debateData in debatesData%}		
+
+			{%set (id_debate,debate_title,debate_description,com_count,token_count)=debateData%}
+			<div class="debate">
+				<div class="title"><a href="/debate/{{ id_debate }}">{{ debate_title }}</a></div>
+				<div class="audio">
+					<!-- inserer l'audio du débat -->
+				</div>
+				<div class="description">{{ debate_description }}</div><br/>
+				<div class="tokens_coms">
+					<div class="nb_coms">{{ com_count }} comments posted</div>
+					<div class="nb_tokens">{{ token_count }} tokens given</div>                
+				</div>
+			</div>
+					
+		{%endfor%}
+
+{% endblock %}
+
+
+
+
+

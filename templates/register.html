@@ -1,0 +1,38 @@
+{% extends "layout.html"%}
+
+{% block link %}
+            <link rel="stylesheet" href="{{ url_for('static',filename='styles/register_login.css') }} " />
+{% endblock %}
+
+{% block body %}
+    <div class="sections">
+        <section class="leftpart">
+            <a href="{{url_for('index')}}"> <img src="static/media/logo_nu.png" class="logo_nu"/>  </a>
+            <p>Join Kleps to debate about the <br/>next projects of your city</p>
+        </section>
+        <section class="rightpart">
+            <form action="{{ url_for('addUser') }}" method='POST'>
+                <div class="field">
+                    <p>Username</p>
+                    <input required  autocomplete="off" pattern="[^\s]+" type="text" id="username" name="username" title="Ce champ ne doit pas contenir d'espaces" >
+                </div>
+                <div class="field">
+                    <p>Email address</p>
+                    <input required  autocomplete="off" pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})" type="email" id="email" name="email" title="Mail au format contact@montrezvous.net"  >
+                    <!-- pour les mails au format contact@montrezvous.net-->
+                </div> 
+                <div class="field">
+                    <p>Password</p>
+                    <input required pattern="[^\s]+" type="password" id="password" name="password" title="Ce champ ne doit pas contenir d'espaces" >
+                </div>
+                <div class="field">
+                    <p>Confirm Password</p>
+                    <input required pattern="[^\s]+" type="password" id="confirm_password" name="confirm_password" title="Ce champ ne doit pas contenir d'espaces" >
+                </div>
+                <div class="button">
+                    <p><input type="submit" value="S'inscrire"></p>
+                </div>
+            </form>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block link %}
+            <link rel="stylesheet" href="{{ url_for('static',filename='styles/debate.css')}}" />
+            <link rel="stylesheet" href="{{ url_for('static',filename='styles/audiorec.css')}}" />
+            <link rel="stylesheet" href="{{ url_for('static',filename='styles/proposition.css')}}" />
+{% endblock %}
+{% block body %} 
+
+    {%set (path, sent_date, author, message_title, comment_count, linked_count, token_count,id_proposition,id_debate,name_linked,id_linked)=proposition%}
+    <div>
+        <p>Réponse à:</p>
+            <div class="proposition">
+                        
+                <div class="title_and_link_button">
+                    
+                    <div class="prop_title"> <h3>{{ message_title }}</h3> </div>
+
+                </div>
+                <div class="audio_and_author">
+
+                    <audio controls> <source src="../../static/data/{{path}}"/> </audio>
+                    <p>by {{  author}}</p>
+
+                </div>
+                <div class="com_and_linked_and_token">
+
+                    <div class="com_or_linked_or_token"> <p>{{ comment_count }} comments</p> </div>
+                    <div class="com_or_linked_or_token"> <p>{{ linked_count }} linked proposals</p> </div>
+                    <div class="com_or_linked_or_token"> <p>{{ token_count }} tokens</p> </div>
+                    <div class="com_or_linked_or_token"> <p>published on {{ sent_date }}</p> </div>
+                </div>
+            </div>
+            {% if isLoggedIn=="true" %}
+            
+                <div class=record_message_prop>    
+                    <a href="/audioInputComment/{{id_debate}}/{{id_proposition}}"><button>Add a comment</button></a>
+                </div>
+            
+            {% endif %}
+            <br/>
+                    {% for path, date, author, title, id_comment in comments %}
+                                  
+                    <div class="propositions">
+
+                        <div class="proposition">
+                            
+                            <div class="title_and_link_button">
+                                
+                                <div class="prop_title"> <h3>{{ title }}</h3> </div>
+
+        
+                            </div>
+                            <div class="audio_and_author">
+        
+                                <audio controls> <source src="../../static/data/{{path}}"/> </audio>
+                                <p>by {{ author }}</p>
+                                <div class="com_and_linked_and_token">
+                                    <p class="date">published on {{ date }}</p>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>                    
+                    {% endfor %}
+
+                </div>
+
+
+                    
+        
+{% endblock %}

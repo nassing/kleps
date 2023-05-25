@@ -1,0 +1,130 @@
+.audio {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.audio audio {
+    width: 70%;
+    margin: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    width: 70%;
+    font-size: 14px;
+    margin: 20px;
+}
+
+p strong {
+    font-size: 15px;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    margin: 20px 0;
+    background: darkgrey;
+    border-radius: 7px;
+    width: 70%;
+}
+
+input#title, input#audio_file {
+    font-size: 15px;
+    width: auto;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:20px;
+}
+
+input#submit {
+    font-size: 15px;
+}
+
+.rec button {
+    border-style:solid;
+    border-width: thin;
+    border-radius:20px;
+    padding: 7px;
+    transition: all ease 0.3s;
+}
+
+.rec {
+    margin-bottom: 15px;
+}
+.rec button:hover {
+    background-color: darkgrey;
+    color: rgb(216, 68, 68)
+}
+
+.rec button:active {
+    color: white;
+    border-width: thick;
+    border-radius:20px;
+    border-color: red;
+}
+
+form button {
+    width: 100%;
+    border-radius: 7px;
+    border: none;
+    margin: 5px;
+    background: gainsboro;
+    transition: all ease 0.3s;
+    padding: 2px;
+    margin: 30px 0 0;
+}
+
+
+form button:hover {
+    background-color: dodgerblue;
+    color: gainsboro;
+}
+
+.titre input {
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+input#audio_file {
+    margin: 5px;
+}
+
+button {
+    font-size: 14px;
+    background: darkgrey;
+    border: none;
+    border-radius: 7px;
+    padding: 5px 15px;
+    transition: all ease 0.2s;
+}
+
+button:hover {
+    color: white;
+    background-color: dodgerblue;
+}
+
+.record_message_prop{
+    display: flex;
+    margin-top: 30px;
+    width: auto;
+    position: sticky;
+    top: 82px;
+    z-index: 1;
+    padding: 0 10px;
+    flex-direction: column;
+    align-items: center;
+}

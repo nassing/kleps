@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block link %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='styles/about.css') }}">
+{% endblock %}*
+
+{% block body %}
+<div class="bloc">
+    <h2>Kleps, qu'est ce que c'est ?</h2>
+    <p>
+        Kleps est une platforme de débat concernant les actions de votre commune. Elle permet aux citoyens de s'exprimer librement sur différents sujets proposés par leur commune. Sur Kleps, seul la pertinence des arguments compte, et aucune opinion n'est mauvaise.
+        Quant aux communes, Kleps rapproche mairie et citoyens en leur permettant de s'écouter et d'échanger sur un terrain neutre.
+
+        <br/>Nouveau sur Kleps ? <a href="{{url_for('register')}}">Inscrivez-vous</a> !
+    </p>
+
+    <h2>Comment ca fonctionne ?</h2>
+    <p>Inscrivez-vous et accédez aux débats proposés par votre commune ! Dans l'espace 
+    de débats vous aurez accès aux sujets polémiques que la mairie partagera avec vous. <br/>
+    Cliquez sur un de ces sujets et accédez aux commentaires postés par les autres utilisateurs. 
+    Utilisez vos jetons pour mettre en avant les commentaires que vous trouvez pertinents, et répondez à ceux-ci
+    en cliquant sur leur titre.<br/>
+    Si vous avez un commentaire pertinent en rapport avec un autre, utilisez le bouton "Citer" pour lier votre
+    commentaire à un autre.<br/>
+    Attention, il faut être inscrit pour contribuer à un débat ! Sinon vous ne pourrez pas participer à celui-ci.</p>
+</div>
+{% endblock %}

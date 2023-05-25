@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block link %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+{% endblock %}*
+{% block body%}
+<script type="text/javascript">
+function setCookie(name,value) 
+{
+    let date = new Date();
+    date.setTime(date.getTime() + (30*24*60*60*1000));
+    let expires = "; expires=" + date.toUTCString();
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";;
+}
+
+function getCookie(name) 
+{
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
+    for(let i=0;i < ca.length;i++) 
+    {
+        let c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function closeCookies()
+{
+    let div = document.getElementById("cookies");
+    div.remove();
+}
+</script>
+
+<div class="bloc">
+	<h1> Welcome to Kleps </h1>
+	<p>
+		Kleps est une platforme de débat concernant les actions de votre commune. Elle permet aux citoyens de s'exprimer librement sur différents sujets proposés par leur commune. Sur Kleps, seul la pertinence des arguments compte, et aucune opinion n'est mauvaise.
+		Quant aux communes, Kleps rapproche mairie et citoyens en leur permettant de s'écouter et d'échanger sur un terrain neutre.
+	
+		<br/>Nouveau sur Kleps ? <a href="{{url_for('register')}}">Inscrivez-vous</a> !
+	</p>
+</div>
+<div id=cookies>
+	<p>🍪</p>
+	<p>This website does not use cookies or your data for commercial purposes</p>
+	<p id=close-cookies onclick="closeCookies()">&#10005;</p>
+</div>
+
+<script type="text/javascript">	
+if(getCookie("first_time") != null)
+{
+    closeCookies();
+}
+else
+{
+	setCookie("first_time", "true");
+}
+</script>
+
+{% endblock %}

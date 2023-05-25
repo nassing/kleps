@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" view="viewport" content="width=device-width, initial-scal=1">
+		<title>Kleps</title>
+            <link rel="icon" sizes="192x192" href="{{ url_for('static',filename='media/logo.png') }}" />
+            <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }} " />
+            {% block link %}{% endblock %}
+    </head>
+	<body>
+        <div id="main">    
+            {% if alert_message %}
+                <div class="alert_and_corps">
+                    <div class="alert">
+                        <span class="closebutton" onclick="this.parentElement.style.display='none';">&times;</span>
+                        {{alert_message}}
+                    </div>
+                </div>
+            {%endif%}
+        
+        <!-- HEADER -->
+        <!-- la navbar change en fonction de si l'utilisateur est connecté ou non -->
+            {% if isLoggedIn =="false" %}
+
+            <header class="header">
+                <div class="title_logo">
+                    <h1>Kleps</h1>
+                    <a href="{{ url_for('index')}}"><img class="logo" title="Acceuil Kleps" alt="logo" src="{{ url_for ('static', filename='media/logo.png')}}"></a>
+                </div>
+                <nav class="login_register">
+                    <ul>
+                        <li><a href="{{ url_for ('login') }}">Log in</a></li>
+                        <li><a href="{{ url_for ('register') }}" title="Première connexion">Sign in</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            {% else %}
+
+            <header class="header">
+                <div class="title_logo">
+                    <h1>Kleps</h1>
+                    <a href="{{ url_for('index')}}"><img class="logo" title="Acceuil Kleps" alt="logo Kleps" src="{{ url_for ('static', filename='media/logo.png')}}"></a>
+                </div>
+                <nav class="login_register">
+                    <ul>
+                        <li><a href="{{ url_for('debates_list')}}">Debates</a></li>
+                        <li><a href="{{ url_for ('logout') }}">Log out</a></li>                        
+                    </ul>
+                </nav>
+            </header>
+
+            {% endif %}
+        <!-- CORPS -->
+            <div class="body">
+            {% block body %}{% endblock %}
+            </div>
+        <!-- FOOTER -->
+            <footer class="footer">
+                <a href="{{ url_for ('contact')}}">Contact us</a>
+                <a href="#">Scroll to top</a>
+                <a href="{{ url_for ('about') }}">About us</a>
+            </footer>
+        </div>   
+    </body>
+</html>
