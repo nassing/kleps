@@ -7,4 +7,4 @@ def createAdmin(id_user):
     con.commit()
     con.close
 
-createAdmin(1)
+# createAdmin(1)

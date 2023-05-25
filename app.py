@@ -490,7 +490,7 @@ def index():
 def login():
     if "username" in session:
     #vérifie si l'utilisateur est connecté, sinon renvoie vers la page connexion
-        session["alert_message"]="Vous êtes déjà conecté"
+        session["alert_message"]="You are already logged in"
         return redirect(url_for("index"))
     if "alert_message" in session:
         alert_message=session["alert_message"]
@@ -511,11 +511,11 @@ def logUser():
             session["username"] = username
             session["password"] = password
             return redirect(url_for("user"))
-        session["alert_message"]="Nom d'utilisateur ou mot de passe incorrect"
+        session["alert_message"]="Username or password incorrect"
         return redirect(url_for("login"))
     if "username" in session:
         return redirect(url_for("user"))
-    session["alert_message"]="Erreur durant la connexion"
+    session["alert_message"]="Error while logging in"
     return redirect(url_for("index"))
 
 @app.route("/user")
@@ -523,7 +523,7 @@ def user():
 #si connecté renvoie vers la page de confirmation
 #sinon renvoie vers login pour connexion
     if "username" in session:
-        session["alert_message"]="Vous êtes maintenant connecté"
+        session["alert_message"]="You are now logged in"
         return redirect(url_for("index"))
     return redirect(url_for("login"))
 
@@ -533,7 +533,7 @@ def register():
 #vérifie si l'utilisateur est connecté, sinon renvoie vers la page de création de compte
 #doit toujours avoir le "connexion register" dans le header, d'où le isLoggedIn="false"
     if "username" in session:
-        session["alert_message"]="Vous êtes déjà connecté"
+        session["alert_message"]="You are already logged in"
         return redirect(url_for("index"))
     if "alert_message" in session:
         alert_message=session["alert_message"]
@@ -551,17 +551,17 @@ def addUser():
         confirm_password = request.form["confirm_password"]
         #On récupère les valeurs via un form
         if(password!=confirm_password):
-            session["alert_message"]="Les mots de passes ne sont pas les mêmes"
+            session["alert_message"]="Passwords don't match"
             return redirect(url_for("register"))
         try:
             addNewUser( username, password)  #addNewUser crée un message d'alert si le mail/nom d'utilisateur existe déjà
             if "alert_message" in session :
                 return redirect(url_for("register"))
             else:   #Sinon cela créé le compte, donc on informe l'utilisateur
-                session["alert_message"]="Compte créé avec succès"
+                session["alert_message"]="Account created successfully"
                 return redirect(url_for("login"))
         except:
-            session["alert_message"]="Erreur durant l'inscription"
+            session["alert_message"]="Error while signing up"
             return redirect(url_for("register"))
 
 @app.route("/logout")
@@ -569,9 +569,9 @@ def logout():
 #Déconnecte l'utilisateur s'il est connecté
     if  "username" in session:
         session.pop("username", None)
-        session["alert_message"]="Vous êtes maintenant déconnecté"
+        session["alert_message"]="Your are now logged out"
     else:
-        session["alert_message"]="Vous n'êtes pas connecté"
+        session["alert_message"]="You are not logged in"
     return redirect(url_for('index'))
 
 
@@ -616,10 +616,10 @@ def join_debate(id_debate,join_code):
             addUserToDebate(id_debate,session["username"]) #On ajoute l'utilisateur au débat
             return render_template('debate_joined.html',joined_debate=getDebateName(id_debate)) #On l'informe qu'il a bien rejoint le débat
         except:
-            session["alert_message"]="Erreur lors de l'inscription au débat"
+            session["alert_message"]="Error during debate joining"
             return redirect(url_for("index"))        
     else:
-        session["alert_message"]="Code Invalide"
+        session["alert_message"]="Invalid code"
         return redirect(url_for("index"))
 
 @app.route('/add_debate',methods=["GET","POST"])
@@ -639,16 +639,16 @@ def add_debate():
                     join_code=generateJoinCode()
                     creator = session["username"]
                     createDebate(debate_code,debate_title,join_code,creator,debate_description)
-                    session["alert_message"] = "Débat créé avec succès"
+                    session["alert_message"] = "Debate created successfully"
                     return redirect(url_for("debates_list"))
                 except:
-                    session["alert_message"] = "Erreur lors de la création du débat"
+                    session["alert_message"] = "Error encountered while creating a debate"
                     return redirect(url_for("debates_list"))
         else:
-            session["alert_message"] = "Vous n'êtes pas administrateur"
+            session["alert_message"] = "You are not admin"
             return redirect(url_for("debates_list"))            
     else:          
-        session["alert_message"] = "Vous n'êtes pas connecté"
+        session["alert_message"] = "You are not connected"
         return redirect(url_for("debates_list"))
 
 @app.route("/audioInput/<id_debate>")
@@ -661,22 +661,22 @@ def audioInput(id_debate):
 def getProposition(id_debate):
     if request.method == 'POST':
         if 'audio_file' not in request.files:
-            flash('Pas de fichier séléctionné')
+            flash('No file selected')
             return redirect('audioInput')
         file = request.files['audio_file']
         title = request.form['title']
         if file.filename == '':
-            flash('Pas de fichier séléctionné')
+            flash('No file selected')
             return redirect('audioInput')
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         username = session['username']
         try:
             addAudioToDB(file.filename, username, id_debate, title) 
-            session["alert_message"]="Message posté avec succès"
+            session["alert_message"]="Message posted successfully"
             return redirect(url_for('debates_list'))
         except:
-            session["alert_message"]="Erreur lors du processus"
+            session["alert_message"]="Error in the process"
             return redirect(url_for('debates_list'))
 
 @app.route("/audioInputLinked/<id_debate>/<id_linked>")
@@ -690,22 +690,22 @@ def audioInputLinked(id_linked,id_debate):
 def getMessageLinked(id_debate,id_linked):
     if request.method == 'POST':
         if 'audio_file' not in request.files:
-            flash('Pas de fichier séléctionné')
+            flash('No file selected')
             return redirect('audioInput')
         file = request.files['audio_file']
         title = request.form['title']
         if file.filename == '':
-            flash('Pas de fichier séléctionné')
+            flash('No file selected')
             return redirect('audioInput')
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         username = session['username']
         try:
             addAudioToDBLinked(file.filename, username, id_debate, title, id_linked) 
-            session["alert_message"]="Message posté avec succès"
+            session["alert_message"]="Message posted successfully"
             return redirect(url_for('debates_list'))
         except:
-            session["alert_message"]="Erreur lors du processus"
+            session["alert_message"]="Error in the process"
             return redirect(url_for('debates_list'))
         
 @app.route("/audioInputComment/<id_debate>/<id_linked>")
@@ -718,23 +718,23 @@ def audioInputComment(id_linked,id_debate):
 def getMessageComment(id_debate, id_linked):
     if request.method == 'POST':
         if 'audio_file' not in request.files:
-            flash('Pas de fichier séléctionné')
+            flash('No file selected')
             return redirect('audioInput')
         file = request.files['audio_file']
         title = request.form['title']
         if file.filename == '':
-            flash('Pas de fichier séléctionné')
+            flash('No file selected')
             return redirect('audioInput')
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         username = session['username']
         try:
             addAudioToDBComment(file.filename, username, id_debate, title, id_linked) 
-            session["alert_message"]="Commentaire posté avec succès"
+            session["alert_message"]="Comment posted successfully"
             id_proposition = id_linked
             return redirect(url_for('debates_list'))
         except:
-            session["alert_message"]="Erreur lors du processus"
+            session["alert_message"]="Error in the process"
             id_proposition = id_linked
             return redirect(url_for('debates_list'))
             
@@ -784,15 +784,15 @@ def like(id_debate,id_proposition):
         if(already_liked>=1):
             cur.execute("DELETE FROM tokens WHERE id_liker=? AND id_message=? AND id_debate=?",(id_user,id_proposition,id_debate))
             con.commit()
-            session["alert_message"]="Vous avez bien enlevé votre vote !"
+            session["alert_message"]="You have unvoted !"
             return redirect(url_for('proposition',id_debate=id_debate,id_proposition=id_proposition))
         if(already_liked==0):
             cur.execute("INSERT INTO tokens(id_liker,id_message,id_debate) VALUES(?,?,?)",(id_user,id_proposition,id_debate))
             con.commit()
-            session["alert_message"]="Vous avez bien voté !"
+            session["alert_message"]="You have voted !"
             return redirect(url_for('proposition',id_debate=id_debate,id_proposition=id_proposition))
     except:
-        session["alert_message"]="Erreur lors du processus"
+        session["alert_message"]="Error in the process"
         return redirect(url_for('debates_list'))
 
 @app.route("/stats/<id_user>")
@@ -821,7 +821,7 @@ def stats(id_user):
                     liste.append(i[0])
                 return render_template("stats.html",stats = getAllDebatesData(),n= len(getAllDebatesData()),id_debates=liste)
         except:
-            alert_message= "Erreur lors du processus"
+            alert_message= "Error in the process"
             
             return redirect(url_for('login'))
         

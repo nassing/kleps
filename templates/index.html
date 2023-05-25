@@ -36,15 +36,20 @@ function closeCookies()
 <div class="bloc">
 	<h1> Welcome to Kleps </h1>
 	<p>
-		Kleps est une platforme de débat concernant les actions de votre commune. Elle permet aux citoyens de s'exprimer librement sur différents sujets proposés par leur commune. Sur Kleps, seul la pertinence des arguments compte, et aucune opinion n'est mauvaise.
-		Quant aux communes, Kleps rapproche mairie et citoyens en leur permettant de s'écouter et d'échanger sur un terrain neutre.
-	
-		<br/>Nouveau sur Kleps ? <a href="{{url_for('register')}}">Inscrivez-vous</a> !
+		Kleps is a vocal-message based social media. It is supposed to help people to express their opinions about their city's projects. You can create posts on any debate and reply to anyone. You can also give tokens to answers you like to make them more popular. You can manage debates with the admin account (username & password: admin). As it is a school project, I tried to modify it the least possible to keep the original idea.
+        
+        {% if isLoggedIn=="false" %}
+        <br/>
+        <br/>Want to try Kleps ? <a href="{{url_for('register')}}">Sign up</a> !
+        {% else %}
+        <br/>
+        <br/><a href="{{url_for('debates_list')}}">See debates</a>
+        {% endif %}
 	</p>
 </div>
 <div id=cookies>
 	<p>🍪</p>
-	<p>This website does not use cookies or your data for commercial purposes</p>
+	<p>This website does not use cookies nor your data for commercial purposes</p>
 	<p id=close-cookies onclick="closeCookies()">&#10005;</p>
 </div>
 
